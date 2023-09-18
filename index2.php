@@ -56,28 +56,23 @@
 						"searchable": false,
 						"orderable": false,	
 						"targets": 6,
-						render: function (data, type, row) {
-							let encode = btoa(data);
-							let btn = '<a href="edit.php?nama='+ encode +'">Edit</a> <a href="delete.php?nama='+ encode +'">Hapus</a>';
-							return btn;
-						}
+						"data": null,
+						"defaultContent": '<button type="button" class="btnEdit">Edit</button> <button class="btnDelete">Hapus</button>'
 					}
 				]
-
-				// "columns": [
-				// 	{data: '0', render: function (data, type, row, meta) {
-				// 		return meta.row + meta.settings._iDisplayStart + 1;
-				// 	}
-				// 	},
-				// 	{"data": '1'},
-				// 	{"data": '2'},
-				// 	{"data": '3'},
-				// 	{"data": '4'},
-				// 	{"data": '5'},
-				// 	// {"data": '6'},
-				// 	// {"data": '7'}
-				// ] 
 			})
+
+			// button edit
+			$('#example tbody').on('click', '.btnEdit', function() {
+				let data = tabel.row($(this).parents('tr')).data();
+				window.location.href = "edit.php?nama="+ data[1];
+			});
+
+			// button delete
+			$('#example tbody').on('click', '.btnDelete', function() {
+				let data = tabel.row($(this).parents('tr')).data(); 
+				window.location.href = "delete.php?nama="+ data[1];
+			});
 		})
 	</script>
 </body>
